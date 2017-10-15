@@ -1,26 +1,22 @@
 <?php
-/**
- * External pages French language file
- */
-
 return array(
 
 	/**
 	 * Menu items and titles
 	 */
-	'expages' => "Pages du site",
-	'admin:appearance:expages' => "Site Pages",
+	'expages' => "Pages externes",
+	'admin:appearance:expages' => "Pages externes",
 	'expages:edit:viewpage' => "Voir la page sur le site",
-	'expages:about-a_propos' => "À propos",		// GCChange change - Ilia: Bilingual page url
-	'expages:terms' => "Termes",		// GCChange change - Ilia: Bilingual page url
-	'expages:privacy-confidentialite' => "Confidentialité",		// GCChange change - Ilia: Bilingual page url
-	'expages:contact' => "Contacter",
+	'expages:about' => "À propos",
+	'expages:terms' => "Mentions légales",
+	'expages:privacy' => "Informations personnelles",
+	'expages:contact' => "Contact",
 
-	'expages:notset' => "Cette page n'a pas encore été créée.",
+	'expages:notset' => "Cette page n'a pas été définie pour le moment.",
 
 	/**
 	 * Status messages
 	 */
-	'expages:posted' => "Votre page a été mise à jour avec succès.",
+	'expages:posted' => "La page externe a bien été mise à jour.",
 	'expages:error' => "Impossible d'enregistrer cette page.",
 );

@@ -34,7 +34,7 @@ $sidebar = file_get_type_cloud($owner->guid, true);
 
 $body = elgg_view_layout('content', array(
 	'filter_context' => 'friends',
-	'content' => $content  . elgg_unregister_menu_item('title', 'new_folder'),//change title2 cause phpwarning: Object of class ElggMenuItem could not be converted to string
+	'content' => $content,
 	'title' => $title,
 	'sidebar' => $sidebar,
 ));

@@ -9,7 +9,7 @@ $user = elgg_get_page_owner_entity();
 
 $form_body = elgg_view('forms/account/settings', $vars);
 
-$submit = elgg_view('input/submit', ['value' => elgg_echo('save'), 'class' => 'btn btn-primary']);
+$submit = elgg_view('input/submit', ['value' => elgg_echo('save')]);
 $hidden = '';
 
 if ($user) {

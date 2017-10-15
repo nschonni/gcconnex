@@ -15,6 +15,7 @@ elgg.ui.init = function () {
 		}
 	});
 
+	$('.elgg-system-messages li').animate({opacity: 0.9}, 6000);
 	$('.elgg-system-messages li.elgg-state-success').fadeOut('slow');
 
 	$('[rel=toggle]').live('click', elgg.ui.toggles);
@@ -210,7 +211,7 @@ elgg.ui.initHoverMenu = function(parent) {
 		if (!$ul.length) {
 			return;
 		}
-        
+
 		elgg.get('ajax/view/navigation/menu/user_hover/contents', {
 			data: $ul.data('elggMenuData'),
 			success: function(data) {
@@ -218,17 +219,6 @@ elgg.ui.initHoverMenu = function(parent) {
 					// replace all existing placeholders with new menu
 					$all_placeholders.removeClass('elgg-ajax-loader')
 						.html($(data).children());
-                    
-                    
-                    //very dirty fix of hover_menu in new GCconnex theme
-                    $all_placeholders.each(function(){
-                        if($(this).parent().is('body')){
-                            //dont do anything with this menu
-                        } else {
-                            //but hide the rest
-                            $(this).hide();
-                        }
-                    });
 				}
 			}
 		});
@@ -271,8 +261,8 @@ elgg.ui.initHoverMenu = function(parent) {
 
 			// @todo Use jQuery-ui position library instead -- much simpler
 			var offset = $avatar.offset();
-			var top = $avatar.height() + 7 + offset.top + 'px';
-			var left = $avatar.width() - 45 + offset.left + 'px';
+			var top = $avatar.height() + offset.top + 'px';
+			var left = $avatar.width() - 15 + offset.left + 'px';
 
 			$hovermenu.appendTo('body')
 					.css('position', 'absolute')

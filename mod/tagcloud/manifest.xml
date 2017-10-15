@@ -5,7 +5,6 @@
 	<author>Core Developers</author>
 	<version>1.9</version>
 	<category>bundled</category>
-	<category>GC Custom</category>
 	<category>widget</category>
 	<description>Tag cloud related functionality</description>
 	<website>http://elgg.org/</website>

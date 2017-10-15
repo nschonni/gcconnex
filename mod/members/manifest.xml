@@ -5,7 +5,6 @@
 	<author>Core developers</author>
 	<version>1.9</version>
 	<category>bundled</category>
-	<category>GC Custom</category>
 	<description>Provides a public list of the members of your site</description>
 	<website>http://www.elgg.org/</website>
 	<copyright>See COPYRIGHT.txt</copyright>

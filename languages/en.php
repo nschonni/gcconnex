@@ -138,8 +138,8 @@ return array(
 	'name' => "Display name",
 	'email' => "Email address",
 	'username' => "Username",
-	'loginusername' => "GCconnex username or email",
-	'password' => "GCconnex password",
+	'loginusername' => "Username or email",
+	'password' => "Password",
 	'passwordagain' => "Password (again for verification)",
 	'admin_option' => "Make this user an admin?",
 
@@ -176,7 +176,7 @@ return array(
 	'widget:unavailable' => 'You have already added this widget',
 	'widget:numbertodisplay' => 'Number of items to display',
 
-	'widget:delete' => 'Remove "%s" widget', // GCchange - Ilia: Specified that it is the widget that is being deleted
+	'widget:delete' => 'Remove %s',
 	'widget:edit' => 'Customize this widget',
 
 	'widgets' => "Widgets",
@@ -210,7 +210,7 @@ return array(
 	'friends' => "Friends",
 	'friends:yours' => "Your friends",
 	'friends:owned' => "%s's friends",
-	'friendprofile:add' => "Add friend",
+	'friend:add' => "Add friend",
 	'friend:remove' => "Remove friend",
 
 	'friends:add:successful' => "You have successfully added %s as a friend.",
@@ -231,21 +231,21 @@ return array(
 
 	'friends:of' => "Friends of",
 	'friends:collections' => "Friend collections",
-	'collections:add' => "New circle",
+	'collections:add' => "New collection",
 	'friends:collections:add' => "New friends collection",
 	'friends:addfriends' => "Select friends",
-	'friends:collectionname' => "Circle name",
-	'friends:collectionfriends' => "Friends in circle",
-	'friends:collectionedit' => "Edit this circle",
-	'friends:nocollections' => "You do not have any circles yet.",
-	'friends:collectiondeleted' => "Your circle has been deleted.",
-	'friends:collectiondeletefailed' => "We were unable to delete the circle. Either you don't have permission, or some other problem has occurred.",
-	'friends:collectionadded' => "Your circle was successfully created",
-	'friends:nocollectionname' => "You need to give your circle a name before it can be created.",
-	'friends:collections:members' => "Circle members",
-	'friends:collections:edit' => "Edit circle",
-	'friends:collections:edited' => "Saved circle",
-	'friends:collection:edit_failed' => 'Could not save circle.',
+	'friends:collectionname' => "Collection name",
+	'friends:collectionfriends' => "Friends in collection",
+	'friends:collectionedit' => "Edit this collection",
+	'friends:nocollections' => "You do not have any collections yet.",
+	'friends:collectiondeleted' => "Your collection has been deleted.",
+	'friends:collectiondeletefailed' => "We were unable to delete the collection. Either you don't have permission, or some other problem has occurred.",
+	'friends:collectionadded' => "Your collection was successfully created",
+	'friends:nocollectionname' => "You need to give your collection a name before it can be created.",
+	'friends:collections:members' => "Collection members",
+	'friends:collections:edit' => "Edit collection",
+	'friends:collections:edited' => "Saved collection",
+	'friends:collection:edit_failed' => 'Could not save collection.',
 
 	'friendspicker:chararray' => 'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
 
@@ -438,12 +438,11 @@ return array(
 	'user:username:notfound' => 'Username %s not found.',
 
 	'user:password:lost' => 'Lost password',
-	'user:password:resetreq:success' => 'Password reset successful. You will receive an email shortly.',
-	'user:password:resetreq:fail' => 'Could not request a new password.',
+	'user:password:changereq:success' => 'Successfully requested a new password, email sent',
+	'user:password:changereq:fail' => 'Could not request a new password.',
 
-	//GCchange: more detailed password reset text - Troy T. Lawson
-	'user:password:text' => 'To request a new password, enter your username or email address below and click the Request button. An email will be sent to you with your temporary password. </br></br><b>Note:</b> It may take several minutes to receive the email due to your departmental firewall. To avoid further delays, do not resend another request - please be patient.',
-	
+	'user:password:text' => 'To request a new password, enter your username or email address below and click the Request button.',
+
 	'user:persistent' => 'Remember me',
 
 	'walled_garden:welcome' => 'Welcome to',
@@ -738,7 +737,7 @@ These changes will only affect new users on the site.',
 
 	'usersettings:statistics' => "Your statistics",
 	'usersettings:statistics:opt:description' => "View statistical information about users and objects on your site.",
-	'usersettings:statistics:opt:linktext' => "Account Information",
+	'usersettings:statistics:opt:linktext' => "Account statistics",
 
 	'usersettings:user' => "%s's settings",
 	'usersettings:user:opt:description' => "This allows you to control user settings.",

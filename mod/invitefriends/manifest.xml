@@ -5,7 +5,6 @@
 	<author>Core developers</author>
 	<version>1.9</version>
 	<category>bundled</category>
-	<category>GC Custom</category>
 	<category>social</category>
 	<description>Adds the ability for users to invite friends through email.</description>
 	<website>http://www.elgg.org/</website>

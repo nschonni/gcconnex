@@ -89,7 +89,4 @@ if ($data_root) {
 // something went wrong so load engine and try to forward to default icon
 require_once $base_dir . "/engine/start.php";
 elgg_log("Profile icon direct failed.", "WARNING");
-//GCchange - Troy T. Lawson - appears that size is not being set prior to this call
-//so i set it manually. This is part of the cometchat fix. Does not appear to cause problems anywhere else
-$size = "tiny";
 forward("_graphics/icons/user/default{$size}.gif");

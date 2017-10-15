@@ -6,7 +6,7 @@
  */
 
 $guid = get_input('guid');
-$lang = get_current_language();
+
 elgg_entity_gatekeeper($guid, 'object');
 
 $page = get_entity($guid);
@@ -23,21 +23,12 @@ if (!$container) {
 	forward(REFERER);
 }
 
-	$title = gc_explode_translation($page->title, $lang);
-
-if(!$container->title){
-	$group_title = gc_explode_translation($container->name, $lang);
-
-}else{
-	$group_title = gc_explode_translation($container->title, $lang);
-
-}
-	
+$title = $page->title;
 
 if (elgg_instanceof($container, 'group')) {
-	elgg_push_breadcrumb($group_title, "pages/group/$container->guid/all");
+	elgg_push_breadcrumb($container->name, "pages/group/$container->guid/all");
 } else {
-	elgg_push_breadcrumb($group_title, "pages/owner/$container->username");
+	elgg_push_breadcrumb($container->name, "pages/owner/$container->username");
 }
 pages_prepare_parent_breadcrumbs($page);
 elgg_push_breadcrumb($title);

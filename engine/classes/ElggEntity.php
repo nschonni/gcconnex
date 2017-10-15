@@ -1662,40 +1662,13 @@ abstract class ElggEntity extends \ElggData implements
 				return false;
 			}
 		}
-
-		if ( $type == "object" ){
-			if ( $subtype == "mission-posted" || $subtype == "mission" ){
-				$duplicate_check = md5( sanitize_string($this->title).sanitize_string($this->description) ) . $owner_guid . get_input('__elgg_ts');
-				try{
-					$result = $this->getDatabase()->insertData("INSERT into {$CONFIG->dbprefix}entities
-						(type, subtype, owner_guid, site_guid, container_guid,
-							access_id, time_created, time_updated, last_action, enabled, duplicate_check)
-						values
-						('$type', $subtype_id, $owner_guid, $site_guid, $container_guid,
-							$access_id, $time_created, $now, $now, 'no', '$duplicate_check')");
-				}
-				catch( DatabaseException $e ){
-					error_log("Duplication prevented: " . $e->getMessage());
-					return null;
-				}
-			}
-			else{
-				$result = $this->getDatabase()->insertData("INSERT into {$CONFIG->dbprefix}entities
-						(type, subtype, owner_guid, site_guid, container_guid,
-							access_id, time_created, time_updated, last_action, enabled)
-						values
-						('$type', $subtype_id, $owner_guid, $site_guid, $container_guid,
-							$access_id, $time_created, $now, $now, 'no')");
-			}
-		}
-		else {
-			$result = $this->getDatabase()->insertData("INSERT into {$CONFIG->dbprefix}entities
-				(type, subtype, owner_guid, site_guid, container_guid,
-					access_id, time_created, time_updated, last_action)
-				values
-				('$type', $subtype_id, $owner_guid, $site_guid, $container_guid,
-					$access_id, $time_created, $now, $now)");
-		}
+		
+		$result = $this->getDatabase()->insertData("INSERT into {$CONFIG->dbprefix}entities
+			(type, subtype, owner_guid, site_guid, container_guid,
+				access_id, time_created, time_updated, last_action)
+			values
+			('$type', $subtype_id, $owner_guid, $site_guid, $container_guid,
+				$access_id, $time_created, $now, $now)");
 
 		if (!$result) {
 			throw new \IOException("Unable to save new object's base entity information!");

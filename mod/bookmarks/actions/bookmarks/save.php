@@ -6,11 +6,7 @@
 */
 
 $title = htmlspecialchars(get_input('title', '', false), ENT_QUOTES, 'UTF-8');
-$title2 = htmlspecialchars(get_input('title2', '', false), ENT_QUOTES, 'UTF-8');
-$title3 = gc_implode_translation($title, $title2);
 $description = get_input('description');
-$description2 = get_input('description2');
-$description3 = gc_implode_translation($description,$description2);
 $address = get_input('address');
 $access_id = get_input('access_id');
 $tags = get_input('tags');
@@ -25,7 +21,7 @@ if ($address && !preg_match("#^((ht|f)tps?:)?//#i", $address)) {
 	$address = "http://$address";
 }
 
-if ((!$title && !$title2) || !$address) {
+if (!$title || !$address) {
 	register_error(elgg_echo('bookmarks:save:failed'));
 	forward(REFERER);
 }
@@ -62,20 +58,11 @@ if ($guid == 0) {
 
 $tagarray = string_to_tag_array($tags);
 
-$bookmark->title = $title3;
-//$bookmark->title2 = $title2;
-//$bookmark->title3 = $title3;
+$bookmark->title = $title;
 $bookmark->address = $address;
-$bookmark->description = $description3;
-//$bookmark->description2 = $description2;
-//$bookmark->description3 = $description3;
+$bookmark->description = $description;
 $bookmark->access_id = $access_id;
 $bookmark->tags = $tagarray;
-
-//temporary
-if(!$bookmark->title){
-	$bookmark->title = $bookmark->title2;
-}
 
 if ($bookmark->save()) {
 

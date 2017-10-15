@@ -17,7 +17,6 @@
 	<requires>
 		<type>plugin</type>
 		<name>file_uploading</name>
-		
 	</requires>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>

@@ -16,9 +16,7 @@ if (!elgg_instanceof($file, 'object', 'file')) {
 }
 
 $mime = $file->getMimeType();
-if( $mime == "googledoc" ){
-	header("Location: " . $file->url);
-} else if (!$mime) {
+if (!$mime) {
 	$mime = "application/octet-stream";
 }
 
@@ -28,11 +26,7 @@ $filename = $file->originalfilename;
 header("Pragma: public");
 
 header("Content-type: $mime");
-if (strpos($mime, "image/") !== false || $mime == "application/pdf") {
-	header("Content-Disposition: inline; filename=\"$filename\"");
-} else {
-	header("Content-Disposition: attachment; filename=\"$filename\"");
-}
+header("Content-Disposition: attachment; filename=\"$filename\"");
 header("Content-Length: {$file->getSize()}");
 
 while (ob_get_level()) {

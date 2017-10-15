@@ -8,9 +8,9 @@ elgg_register_event_handler('init', 'system', 'expages_init');
 function expages_init() {
 
 	// Register a page handler, so we can have nice URLs
-	elgg_register_page_handler('about-a_propos', 'expages_page_handler');		// GCChange change - Ilia: Bilingual page url
-	elgg_register_page_handler('terms', 'expages_page_handler');		// GCChange change - Ilia: Bilingual page url
-	elgg_register_page_handler('privacy-confidentialite', 'expages_page_handler');		// GCChange change - Ilia: Bilingual page url
+	elgg_register_page_handler('about', 'expages_page_handler');
+	elgg_register_page_handler('terms', 'expages_page_handler');
+	elgg_register_page_handler('privacy', 'expages_page_handler');
 	elgg_register_page_handler('expages', 'expages_page_handler');
 
 	// Register public external pages
@@ -34,7 +34,7 @@ function expages_init() {
  *
  */
 function expages_public($hook, $handler, $return, $params){
-	$pages = array('about-a_propos', 'terms-termes', 'privacy-confidentialite');		// GCChange change - Ilia: Bilingual page url
+	$pages = array('about', 'terms', 'privacy');
 	return array_merge($pages, $return);
 }
 
@@ -42,8 +42,7 @@ function expages_public($hook, $handler, $return, $params){
  * Setup the links to site pages
  */
 function expages_setup_footer_menu() {
-	$pages = array('about-a_propos', 'terms-termes', 'privacy-confidentialite');		// GCChange change - Ilia: Bilingual page url
-	
+	$pages = array('about', 'terms', 'privacy');
 	foreach ($pages as $page) {
 		$url = "$page";
 		$wg_item = new ElggMenuItem($page, elgg_echo("expages:$page"), $url);

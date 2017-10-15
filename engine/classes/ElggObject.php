@@ -146,8 +146,7 @@ class ElggObject extends \ElggEntity {
 			// TODO(evan): Throw an exception here?
 			return false;
 		}
-
-		$this->enable();
+		
 		return $guid;
 	}
 

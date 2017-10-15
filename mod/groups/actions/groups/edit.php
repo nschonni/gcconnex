@@ -32,8 +32,6 @@ foreach (elgg_get_config('group') as $shortname => $valuetype) {
 }
 
 $input['name'] = htmlspecialchars(get_input('name', '', false), ENT_QUOTES, 'UTF-8');
-$input['name2'] = htmlspecialchars(get_input('name2', '', false), ENT_QUOTES, 'UTF-8');
-$input['description3'] = $input['name2'];
 
 $user = elgg_get_logged_in_user_entity();
 
@@ -297,14 +295,6 @@ if ($must_move_icons) {
 	foreach($sizes as $size) {
 		rename("$old_path/{$group_guid}{$size}.jpg", "$new_path/{$group_guid}{$size}.jpg");
 	}
-}
-
-// cyu - 05/12/2016: modified to comform to the business requirements documentation
-// please note that, this action file is overwritten by group tools (if applicable)
-if (elgg_is_active_plugin('cp_notifications')) {
-	$user = elgg_get_logged_in_user_entity();
-	add_entity_relationship($user->getGUID(), 'cp_subscribed_to_email', $group->getGUID());
-	add_entity_relationship($user->getGUID(), 'cp_subscribed_to_site_mail', $group->getGUID());
 }
 
 system_message(elgg_echo("groups:saved"));

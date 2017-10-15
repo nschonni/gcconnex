@@ -35,3 +35,4 @@ function messages_prepare_form_vars($recipient_guid = 0) {
 
 	return $values;
 }
+

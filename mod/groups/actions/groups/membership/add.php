@@ -41,26 +41,8 @@ if (sizeof($user_guid)) {
 					'object' => $group,
 				];
 
-					if (elgg_is_active_plugin('cp_notifications')) {
-						
-						$message = array(
-							'cp_user_added' => $user,
-							'cp_group' => $group,
-							'cp_msg_type' => 'cp_group_add'
-							);
-						$result = elgg_trigger_plugin_hook('cp_overwrite_notification', 'all', $message);
-
-					} else {
-						// Send welcome notification to user
-						notify_user($user->getGUID(), $group->owner_guid, $subject, $body, $params);
-					}
-
-					// cyu - 05/12/2016: modified to comform to the business requirements documentation
-					// please note that this file is overwritten by group_tools and wet4 plugin (if applicable)
-					if (elgg_is_active_plugin('cp_notifications')) {
-						add_entity_relationship($user->getGUID(), 'cp_subscribed_to_email', $group->getGUID());
-						add_entity_relationship($user->getGUID(), 'cp_subscribed_to_site_mail', $group->getGUID());
-					}
+				// Send welcome notification to user
+				notify_user($user->getGUID(), $group->owner_guid, $subject, $body, $params);
 
 				system_message(elgg_echo('groups:addedtogroup'));
 			} else {

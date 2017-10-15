@@ -3,16 +3,13 @@ return array(
 	/**
 	* Menu items and titles
 	*/
-	'messages:displayposts' => "Display %s posts",
+
 	'messages' => "Messages",
 	'messages:unreadcount' => "%s unread",
-	'messages:unreadmessages' => "unread message(s)",
 	'messages:back' => "back to messages",
 	'messages:user' => "%s's inbox",
-	'messages:user_notifications' => "%s's notifications",
 	'messages:posttitle' => "%s's messages: %s",
 	'messages:inbox' => "Inbox",
-	'messages:notifications' => "Notifications",
 	'messages:sent' => "Sent",
 	'messages:message' => "Message",
 	'messages:title' => "Subject",
@@ -82,10 +79,6 @@ return array(
 	'messages:user:blank' => "You did not select someone to send this to.",
 	'messages:user:self' => "You cannot send a message to yourself.",
 
-	'messages:deleted_sender' => 'Gcconnex',
-
-	'colleague_circle_checkbox' => 'Your colleagues circles',
-	'collections_circle_selection' => "Select a colleague circle",
-	'collections_circle_send' => "Send message to",
+	'messages:deleted_sender' => 'Deleted user',
 
 );

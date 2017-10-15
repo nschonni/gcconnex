@@ -13,7 +13,7 @@ function invitefriends_init() {
 	elgg_register_action('invitefriends/invite', elgg_get_plugins_path() . 'invitefriends/actions/invite.php');
 
 	elgg_register_plugin_hook_handler('register', 'user', 'invitefriends_add_friends');
-$filter_context = elgg_extract('filter_context', array(), 'all');
+
 	if (elgg_is_logged_in() && elgg_get_config('allow_registration')) {
 		$params = array(
 			'name' => 'invite',
@@ -23,9 +23,6 @@ $filter_context = elgg_extract('filter_context', array(), 'all');
 		);
 		elgg_register_menu_item('page', $params);
 	}
-
-    elgg_register_js("multiple-emails", "mod/invitefriends/scripts/multiple-emails.js");
-    elgg_register_css("multiple-emails", "mod/invitefriends/css/multiple-emails.css");
 }
 
 /**
@@ -36,9 +33,6 @@ $filter_context = elgg_extract('filter_context', array(), 'all');
  */
 function invitefriends_page_handler($page) {
 	elgg_gatekeeper();
-	
-	// GCchange - Ilia: fix colleague circles link in menu not appearing on this page
-	//collections_submenu_items();
 
 	if (!elgg_get_config('allow_registration')) {
 		return false;

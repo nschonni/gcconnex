@@ -1,10 +1,6 @@
 <?php
-/**
- * Elgg profile plugin language pack
- */
-
 return array(
 	'profile' => 'Profil',
-	'profile:notfound' =>  'Désolé. Il nous est impossible de trouver le profil demandé.',
+	'profile:notfound' => 'Désolé, nous n\'avons pas pu trouver le profil demandé.',
 
 );

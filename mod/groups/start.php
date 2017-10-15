@@ -21,7 +21,7 @@ function groups_init() {
 	elgg_register_entity_type('group', '');
 
 	// Set up the menu
-	$item = new ElggMenuItem('groups', elgg_echo('groups'), 'groups/featured');
+	$item = new ElggMenuItem('groups', elgg_echo('groups'), 'groups/all');
 	elgg_register_menu_item('site', $item);
 
 	// Register a page handler, so we can have nice URLs
@@ -117,11 +117,8 @@ function groups_init() {
 function groups_fields_setup() {
 
 	$profile_defaults = array(
-		'briefdescription' => 'text',			// GCConnex change - Ilia: Moved brief description above the long description for Issue#60 (https://github.com/tbs-sct/gcconnex/issues/60)
-		'briefdescription2' => 'text',			// GCConnex change - Ilia: Moved brief description above the long description for Issue#60 (https://github.com/tbs-sct/gcconnex/issues/60)
 		'description' => 'longtext',
-		'description2' => 'longtext',
-		'description3' => 'hidden',
+		'briefdescription' => 'text',
 		'interests' => 'tags',
 		//'website' => 'url',
 	);
@@ -180,7 +177,7 @@ function groups_setup_sidebar_menus() {
 			));
 		}
 	}
-	/*if (elgg_get_context() == 'groups' && !elgg_instanceof($page_owner, 'group')) {
+	if (elgg_get_context() == 'groups' && !elgg_instanceof($page_owner, 'group')) {
 		elgg_register_menu_item('page', array(
 			'name' => 'groups:all',
 			'text' => elgg_echo('groups:all'),
@@ -209,7 +206,7 @@ function groups_setup_sidebar_menus() {
 			$item = new ElggMenuItem('groups:user:invites', $text, $url);
 			elgg_register_menu_item('page', $item);
 		}
-	}*/
+	}
 }
 
 /**
@@ -385,13 +382,8 @@ function groups_entity_menu_setup($hook, $type, $return, $params) {
 
 	/* @var ElggMenuItem $item */
 	foreach ($return as $index => $item) {
-		if ( get_group_members($entity->guid, 10, 0, 0, true) > 1 )
-			if (in_array($item->getName(), array('access', 'edit'))) {
-				unset($return[$index]);
-		}
-		if ( get_group_members($entity->guid, 10, 0, 0, true) == 1 )
-			if (in_array($item->getName(), array('access', 'edit'))) {
-				unset($return[$index]);
+		if (in_array($item->getName(), array('access', 'likes', 'unlike', 'edit', 'delete'))) {
+			unset($return[$index]);
 		}
 	}
 
@@ -530,9 +522,9 @@ function groups_write_acl_plugin_hook($hook, $entity_type, $returnvalue, $params
 			unset($returnvalue[$access_id]);
 		}
 	}
-$lang = get_current_language();
+
 	// add write access to the group
-	$returnvalue[$page_owner->group_acl] = elgg_echo('groups:acl', array(gc_explode_translation($page_owner->name,$lang)));
+	$returnvalue[$page_owner->group_acl] = elgg_echo('groups:acl', array($page_owner->name));
 
 	return $returnvalue;
 }

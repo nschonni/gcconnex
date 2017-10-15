@@ -41,7 +41,7 @@ function discussion_handle_all_page() {
  * @param int $guid Group entity GUID
  */
 function discussion_handle_list_page($guid) {
-	$lang = get_current_language();
+
 	elgg_set_page_owner_guid($guid);
 
 	elgg_group_gatekeeper();
@@ -50,7 +50,7 @@ function discussion_handle_list_page($guid) {
 	if (!elgg_instanceof($group, 'group')) {
 		forward('', '404');
 	}
-	elgg_push_breadcrumb(gc_explode_translation($group->name,$lang), $group->getURL());
+	elgg_push_breadcrumb($group->name, $group->getURL());
 	elgg_push_breadcrumb(elgg_echo('item:object:groupforumtopic'));
 
 	elgg_register_title_button();
@@ -89,8 +89,6 @@ function discussion_handle_list_page($guid) {
  */
 function discussion_handle_edit_page($type, $guid) {
 	elgg_gatekeeper();
-	$lang = get_current_language();
-
 
 	if ($type == 'add') {
 		$group = get_entity($guid);
@@ -107,7 +105,7 @@ function discussion_handle_edit_page($type, $guid) {
 
 		$title = elgg_echo('groups:addtopic');
 
-		elgg_push_breadcrumb(gc_explode_translation($group->name,$lang), "discussion/owner/$group->guid");
+		elgg_push_breadcrumb($group->name, "discussion/owner/$group->guid");
 		elgg_push_breadcrumb($title);
 
 		$body_vars = discussion_prepare_form_vars();
@@ -126,14 +124,13 @@ function discussion_handle_edit_page($type, $guid) {
 
 		$title = elgg_echo('groups:edittopic');
 
-		elgg_push_breadcrumb(gc_explode_translation($group->title,$lang), "discussion/owner/$group->guid");
-		elgg_push_breadcrumb(gc_explode_translation($topic->title,$lang), $topic->getURL());
+		elgg_push_breadcrumb($group->name, "discussion/owner/$group->guid");
+		elgg_push_breadcrumb($topic->title, $topic->getURL());
 		elgg_push_breadcrumb($title);
 
 		$body_vars = discussion_prepare_form_vars($topic);
 		$content = elgg_view_form('discussion/save', array(), $body_vars);
 	}
-
 
 	$params = array(
 		'content' => $content,
@@ -205,11 +202,11 @@ function discussion_handle_view_page($guid) {
 	// We now have RSS on topics
 	global $autofeed;
 	$autofeed = true;
-	$lang = get_current_language();
+
 	elgg_entity_gatekeeper($guid, 'object', 'groupforumtopic');
 
 	$topic = get_entity($guid);
- $topic->description =  gc_explode_translation($topic->description, $lang); //change content to translation description   
+
 	$group = $topic->getContainerEntity();
 	if (!elgg_instanceof($group, 'group')) {
 		register_error(elgg_echo('group:notfound'));
@@ -222,19 +219,15 @@ function discussion_handle_view_page($guid) {
 
 	elgg_group_gatekeeper();
 
-	
-		elgg_push_breadcrumb(gc_explode_translation($group->title,$lang), "discussion/owner/$group->guid");
-
-	elgg_push_breadcrumb(gc_explode_translation($topic->title, $lang));
-
+	elgg_push_breadcrumb($group->name, "discussion/owner/$group->guid");
+	elgg_push_breadcrumb($topic->title);
 
 	$params = array(
 		'topic' => $topic,
 		'show_add_form' => false,
 	);
 
-
-	$content = elgg_view_entity($topic, array('full_view' => true, ));
+	$content = elgg_view_entity($topic, array('full_view' => true));
 	if ($topic->status == 'closed') {
 		$content .= elgg_view('discussion/replies', $params);
 		$content .= elgg_view('discussion/closed');
@@ -245,11 +238,9 @@ function discussion_handle_view_page($guid) {
 		$content .= elgg_view('discussion/replies', $params);
 	}
 
-   $title = gc_explode_translation($topic->title, $lang);
-
 	$params = array(
 		'content' => $content,
-		'title' =>$title,
+		'title' => $topic->title,
 		'sidebar' => elgg_view('discussion/sidebar'),
 		'filter' => '',
 	);
@@ -266,12 +257,9 @@ function discussion_handle_view_page($guid) {
  */
 function discussion_prepare_form_vars($topic = NULL) {
 	// input names => defaults
-	$lang = get_current_language();
 	$values = array(
 		'title' => '',
-		'title2' => '',
 		'description' => '',
-		'description2' => '',
 		'status' => '',
 		'access_id' => ACCESS_DEFAULT,
 		'tags' => '',
@@ -283,8 +271,7 @@ function discussion_prepare_form_vars($topic = NULL) {
 	if ($topic) {
 		foreach (array_keys($values) as $field) {
 			if (isset($topic->$field)) {
-
-					$values[$field] = $topic->$field;
+				$values[$field] = $topic->$field;
 			}
 		}
 	}

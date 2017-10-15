@@ -15,8 +15,13 @@ if (!elgg_get_config('allow_registration')) {
 
 $site = elgg_get_site_entity();
 
-$emails = json_decode(get_input('emails'));
+$emails = get_input('emails');
 $emailmessage = get_input('emailmessage');
+
+$emails = trim($emails);
+if (strlen($emails) > 0) {
+	$emails = preg_split('/\\s+/', $emails, -1, PREG_SPLIT_NO_EMPTY);
+}
 
 if (!is_array($emails) || count($emails) == 0) {
 	register_error(elgg_echo('invitefriends:noemails'));
@@ -24,11 +29,6 @@ if (!is_array($emails) || count($emails) == 0) {
 }
 
 $current_user = elgg_get_logged_in_user_entity();
-
-if (elgg_is_active_plugin('gcRegistration_invitation')) {
-	$data = array('inviter' => $current_user->guid, 'emails' => $emails);
-	elgg_trigger_plugin_hook('gcRegistration_email_invitation', 'all', $data);
-}
 
 $error = FALSE;
 $bad_emails = array();
@@ -75,19 +75,7 @@ foreach ($emails as $email) {
 		$from = 'noreply@' . $site->getDomain();
 	}
 
-	if (elgg_is_active_plugin('cp_notifications')) {
-		$from_user = elgg_get_logged_in_user_entity();
-		$message = array(
-			'cp_from' => $current_user,
-			'cp_msg_type' => 'cp_friend_invite',
-			'cp_email_msg' => $emailmessage,
-			'cp_join_url' => $link,
-			'cp_to' => $email,
-		);
-		$result = elgg_trigger_plugin_hook('cp_overwrite_notification', 'all', $message);
-	} else {
-		elgg_send_email($from, $email, $subject, $message);
-	}
+	elgg_send_email($from, $email, $subject, $message);
 	$sent_total++;
 }
 

@@ -26,9 +26,7 @@ $title = elgg_echo('pages:add');
 elgg_push_breadcrumb($title);
 
 $vars = pages_prepare_form_vars(null, $parent_guid);
-// cyu - mark this as new entity
-$vars['new_entity'] = true; 
-$content = elgg_view_form('pages/edit',array('entity1' => 'hljdsfdsf'), $vars);
+$content = elgg_view_form('pages/edit', array(), $vars);
 
 $body = elgg_view_layout('content', array(
 	'filter' => '',

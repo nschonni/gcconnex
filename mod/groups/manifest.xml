@@ -5,7 +5,6 @@
 	<author>Core developers</author>
 	<version>1.9</version>
 	<category>bundled</category>
-	<category>GC Custom</category>
 	<category>social</category>
 	<category>widget</category>
 	<description>Provides group and discussion forum support for elgg</description>
@@ -16,10 +15,5 @@
 		<type>elgg_release</type>
 		<version>1.9</version>
 	</requires>
-	<provides>
-		<type>plugin</type>
-		<name>groups</name>
-		<version>1.8</version>
-	</provides>
 	<activate_on_install>true</activate_on_install>
 </plugin_manifest>

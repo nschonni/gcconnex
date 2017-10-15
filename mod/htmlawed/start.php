@@ -50,7 +50,7 @@ function htmlawed_filter_tags($hook, $type, $result, $params = null) {
 		'comment' => 1,
 		'cdata' => 1,
 
-		'deny_attribute' => 'on*',			// using a class whitelist configuration, most classes are still filtered
+		'deny_attribute' => 'class, on*',
 		'hook_tag' => 'htmlawed_tag_post_processor',
 
 		'schemes' => '*:http,https,ftp,news,mailto,rtsp,teamspeak,gopher,mms,callto',
@@ -82,16 +82,6 @@ function htmLawedArray(&$v, $k, $htmlawed_config) {
 	$v = htmLawed($v, $htmlawed_config);
 }
 
-
-/*
- * GC_MODIFICATION
- * Description: Added a css class whitelist to replace the blanket ban on them
- * 		-> $allowed_classes variable - related lines
- * Author: Ilia Salem
- * Date: Apr 29 2016, Nov 29 2016
- * Pull request: #542  (for the classes added to whitelist)
- */
-
 /**
  * Post processor for tags in htmlawed
  * 
@@ -119,13 +109,8 @@ function htmlawed_tag_post_processor($element, $attributes = false) {
 		'margin-right',	'padding', 'float', 'text-decoration'
 	);
 
-	$allowed_classes = array(
-		'table', 'row', 'wb-tables', 'table-striped', 'table-hover', 'bordered', 'btn', 'btn-default', 'btn-primary', 'btn-danger', 'btn-info', 'btn-success', 'btn-warning', 'btn-lg', 'btn-sm', 'btn-xs'
-	);
-
 	$params = array('tag' => $element);
 	$allowed_styles = elgg_trigger_plugin_hook('allowed_styles', 'htmlawed', $params, $allowed_styles);
-	$allowed_classes = elgg_trigger_plugin_hook('allowed_classes', 'htmlawed', $params, $allowed_classes);
 
 	// must return something.
 	$string = '';
@@ -153,28 +138,7 @@ function htmlawed_tag_post_processor($element, $attributes = false) {
 				$string .= " style=\"$style_str\"";
 			}
 
-		}
-		/*  GC_MODIFICATION - css class whitelist processing START */
-		else if ($attr == 'class') {
-			$classes = explode(' ', $value);
-
-			$class_str = '';
-			foreach ($classes as $class) {
-				if (!trim($class)) {
-					continue;
-				}
-
-				if (in_array($class, $allowed_classes)) {
-					$class_str .= "$class ";
-				}
-			}
-
-			if ($class_str) {
-				$class_str = trim($class_str);
-				$string .= " class=\"$class_str\"";
-			}
-		}/*  GC_MODIFICATION - css class whitelist processing END */
-		else {
+		} else {
 			$string .= " $attr=\"$value\"";
 		}
 	}

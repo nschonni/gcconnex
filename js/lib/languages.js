@@ -24,16 +24,6 @@ elgg.add_translation = function(lang, translations) {
 elgg.get_language = function() {
 	var user = elgg.get_logged_in_user_entity();
 
-	// GC change: use toggle language cookie if it is there.
-	if ( document.cookie.indexOf("connex_lang") > -1 ){
-	    return $.cookie('connex_lang');
-	}
-  
-
-  	/*if ( _elgg_services()->session->get('language') )
-   		return _elgg_services()->session->get('language');*/
-
-   	// otherwise resort to the default get_language
 	if (user && user.language) {
 		return user.language;
 	}

@@ -1,24 +1,37 @@
 <?php
 return array(
-	'likes:this' => "J'aime",
-	'likes:deleted' => 'Votre mention aime a été supprimé',
-	'likes:see' => 'Voir qui aime',
-	'likes:remove' => "Je n'aime plus",
-	'likes:notdeleted' => 'Il y avait un problème en supprimant votre j\'aime',
-	'likes:likes' => 'Vous aimez maintenant cet item',
-	'likes:failure' => 'Il y avait un problème à aimer cet item',
-	'likes:alreadyliked' => 'Vous avez déjà aimé item',
-	'likes:notfound' => 'L\'item que vous essayez d\'aimer ne peut être trouvé.',
-	'likes:likethis' => "Aimer",
-	'likes:userlikedthis' => '%s J\'aime',
-	'likes:userslikedthis' => '%s J\'aime',
+	'likes:this' => 'aime',
+	'likes:deleted' => 'Votre appréciation a été retirée',
+	'likes:see' => 'Voir les membres qui aiment',
+	'likes:remove' => 'N\'aime plus',
+	'likes:notdeleted' => 'Il y a eu un problème lors de la suppression de l\'appréciation',
+	'likes:likes' => 'Vous aimez',
+	'likes:failure' => 'Il y a eu un problème lors de l\'appréciation de cet élément',
+	'likes:alreadyliked' => 'Vous aimez déjà',
+	'likes:notfound' => 'L\'élément que vous essayez d\'apprécier ne peut être trouvé',
+	'likes:likethis' => 'Aime',
+	'likes:userlikedthis' => '%s aime',
+	'likes:userslikedthis' => '%s aiment',
 	'likes:river:annotate' => 'aime',
-	'likes:delete:confirm' => 'Êtes-vous certain de vouloir supprimer votre j\'aime?',
+	'likes:delete:confirm' => 'Confirmez-vous vouloir supprimer cette appréciation ?',
 
-	'river:likes' => "J'aime %s %s",
-			
+	'river:likes' => 'aime %s %s',
+
 	// notifications. yikes.
-	'likes:notifications:subject' => '%s aime votre message "%s"',
-	'likes:notifications:body' => 'Bonjour, %1$s, %2$s aime votre message "%3$s" sur %4$s Consultez votre message d\'origine ici : %5$s ou consultez le profile de %2$s ici: %6$s Merci, %4$s ',
+	'likes:notifications:subject' => '%s aime votre publication "%s"',
+	'likes:notifications:body' =>
+'Bonjour %1$s,
 
+%2$s aime votre publication "%3$s" sur %4$s
+
+Pour afficher votre publication :
+%5$s
+
+ou voir le profil de %2$s :
+%6$s
+
+Merci,
+%4$s
+',
+	
 );

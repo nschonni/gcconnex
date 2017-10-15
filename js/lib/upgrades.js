@@ -33,8 +33,7 @@ elgg.upgrades.run = function(e) {
 	$('#upgrade-spinner').removeClass('hidden');
 
 	// Start upgrade from offset 0
-	$('#upgrade-error-count').text( $('#upgrade-parallelization-offset').val() );
-	elgg.upgrades.upgradeBatch( parseInt( $('#upgrade-parallelization-offset').val() ) );
+	elgg.upgrades.upgradeBatch(0);
 };
 
 /**
@@ -89,7 +88,7 @@ elgg.upgrades.upgradeBatch = function(offset) {
 		var total = $('#upgrade-total').text();
 
 		var percent = 100;
-		if (numProcessed < total && !json.output.processComplete) {
+		if (numProcessed < total) {
 			percent = parseInt(numProcessed * 100 / total);
 
 			/**

@@ -18,10 +18,6 @@ foreach ($variables as $name => $type) {
 	}
 }
 
-$input['title'] = gc_implode_translation($input['title'],$input['title2']);
-$input['description'] = gc_implode_translation($input['description'],$input['description2']);
-
-
 // Get guids
 $page_guid = (int)get_input('page_guid');
 $container_guid = (int)get_input('container_guid');
@@ -29,30 +25,26 @@ $parent_guid = (int)get_input('parent_guid');
 
 elgg_make_sticky_form('page');
 
-if ((!$input['title']) && (!$input['title2'])) {
+if (!$input['title']) {
 	register_error(elgg_echo('pages:error:no_title'));
 	forward(REFERER);
 }
 
-if ($page_guid) { // edit page
+if ($page_guid) {
 	$page = get_entity($page_guid);
 	if (!pages_is_page($page) || !$page->canEdit()) {
 		register_error(elgg_echo('pages:cantedit'));
 		forward(REFERER);
 	}
 	$new_page = false;
-	$page->entity_minor_edit = get_input('chk_page_minor_edit');
-
-} else { // new page, guid has not been set/created
+} else {
 	$page = new ElggObject();
 	if ($parent_guid) {
 		$page->subtype = 'page';
 	} else {
 		$page->subtype = 'page_top';
 	}
-
 	$new_page = true;
-	$page->entity_minor_edit = 1; // cyu - because this is a new page, we have no "minor edit" option
 }
 
 if (sizeof($input) > 0) {

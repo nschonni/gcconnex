@@ -485,11 +485,7 @@ function _elgg_views_prepare_head($title) {
 
 	if (empty($title)) {
 		$params['title'] = elgg_get_config('sitename');
-	} else if ( elgg_is_active_plugin('wet4') ) {
-		//add translation
-		$params['title'] = gc_explode_translation($title,get_current_language()) . ' : ' . elgg_get_config('sitename');
-	}else {
-		//add translation
+	} else {
 		$params['title'] = $title . ' : ' . elgg_get_config('sitename');
 	}
 
@@ -1596,6 +1592,7 @@ function elgg_views_boot() {
 	global $CONFIG;
 
 	elgg_register_simplecache_view('css/ie');
+
 	elgg_register_simplecache_view('js/text.js');
 
 	elgg_register_js('elgg.require_config', elgg_get_simplecache_url('js', 'elgg/require_config'), 'head');

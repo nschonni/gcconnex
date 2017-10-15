@@ -4,16 +4,13 @@
  *
  * @package Bookmarks
  */
-$lang = get_current_language();
+
 $page_owner = elgg_get_page_owner_entity();
 if (!$page_owner) {
 	forward('', '404');
 }
 
-$title_bookmarks = elgg_echo('bookmarks:owner', array(gc_explode_translation($page_owner->name, $lang)));
-$title = elgg_echo(gc_explode_translation($page_owner->name, $lang));
-
-elgg_push_breadcrumb($title);
+elgg_push_breadcrumb($page_owner->name);
 
 elgg_register_title_button();
 
@@ -28,6 +25,8 @@ $content .= elgg_list_entities(array(
 	'distinct' => false,
 ));
 
+$title = elgg_echo('bookmarks:owner', array($page_owner->name));
+
 $filter_context = '';
 if ($page_owner->getGUID() == elgg_get_logged_in_user_guid()) {
 	$filter_context = 'mine';
@@ -36,7 +35,7 @@ if ($page_owner->getGUID() == elgg_get_logged_in_user_guid()) {
 $vars = array(
 	'filter_context' => $filter_context,
 	'content' => $content,
-	'title' => $title_bookmarks,
+	'title' => $title,
 	'sidebar' => elgg_view('bookmarks/sidebar'),
 );
 

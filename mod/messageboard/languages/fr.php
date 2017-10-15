@@ -6,22 +6,22 @@ return array(
 	 * Menu items and titles
 	 */
 
-	'messageboard:board' => "Panneau de message",
-	'messageboard:messageboard' => "panneau de message",
-	'messageboard:viewall' => "voir tous",
-	'messageboard:postit' => "poster",
-	'messageboard:history:title' => "Histoire",
-	'messageboard:none' => "Il n'y a rien sur ce forum pour le momentt",
+	'messageboard:board' => "Forum",
+	'messageboard:messageboard' => "forum",
+	'messageboard:viewall' => "Voir tout",
+	'messageboard:postit' => "Envoyer",
+	'messageboard:history:title' => "Historique",
+	'messageboard:none' => "Il n'y a encore rien dans ce forum",
 	'messageboard:num_display' => "Nombre de messages à afficher",
-	'messageboard:desc' => "C'est un babillard que vous pouvez mettre sur votre profil lequel les autres utilisateurs peuvent faire des commentaires.",
+	'messageboard:desc' => "Ceci est un forum que vous pouvez ajouter sur votre profil, dans lequel les autres utilisateurs peuvent laisser un message.",
 
-	'messageboard:user' => "%s's panneau de message",
+	'messageboard:user' => "forum de %s",
 
-	'messageboard:replyon' => 'répondre sur',
-	'messageboard:history' => "histoire",
+	'messageboard:replyon' => 'répondre dans',
+	'messageboard:history' => "historique",
 
-	'messageboard:owner' => '%s\'s panneau de message',
-	'messageboard:owner_history' => '%s a envoyé un message sur le forum de %s',
+	'messageboard:owner' => 'le forum de %s',
+	'messageboard:owner_history' => 'publications de %s dans le forum de %s',
 
 	/**
 	 * Message board widget river
@@ -39,9 +39,8 @@ return array(
 	 * Email messages
 	 */
 
-	'messageboard:email:subject' => 'Vous avez un nouveau babillard commentaire!',
-	'messageboard:email:body' => "Vous avez un nouveau commentairesur votre babillard! %s. Il lit:
-
+	'messageboard:email:subject' => 'Vous avez un nouveau message sur le forum !',
+	'messageboard:email:body' => "Vous avez un nouveau message de %s sur votre forum :
 
 %s
 

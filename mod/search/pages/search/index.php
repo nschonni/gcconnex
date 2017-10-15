@@ -5,7 +5,7 @@
  * @todo much of this code should be pulled out into a library of functions
  */
 
-// Search supports RSS 
+// Search supports RSS
 global $autofeed;
 $autofeed = true;
 
@@ -37,8 +37,6 @@ if (empty($query) && $query != "0") {
 // of each most recent entity types will be shown.
 $limit = ($search_type == 'all') ? 2 : get_input('limit', elgg_get_config('default_limit'));
 $offset = ($search_type == 'all') ? 0 : get_input('offset', 0);
-
-$user_type = ( get_input('user_type') ) ? get_input('user_type') : "";
 
 $entity_type = get_input('entity_type', ELGG_ENTITIES_ANY_VALUE);
 $entity_subtype = get_input('entity_subtype', ELGG_ENTITIES_ANY_VALUE);
@@ -85,14 +83,6 @@ $types = get_registered_entity_types();
 $types = elgg_trigger_plugin_hook('search_types', 'get_queries', $params, $types);
 
 $custom_types = elgg_trigger_plugin_hook('search_types', 'get_types', $params, array());
-
-// cyu - 2014-07-04
-
-// MW - Customized ordering of search results
-if( strpos(elgg_get_site_entity()->name, 'collab') !== false ){
-	unset($types['object']);
-	$types['object'] = array('groupforumtopic', 'file', 'blog', 'thewire', 'comment', 'bookmarks', 'poll', 'event_calendar', 'idea', 'page', 'page_top', 'image', 'album', 'orgnode', 'mission', 'mission-feedback', 'mission-declination', 'mission-wasoffered', 'mission-inprogress', 'mission-posted', 'mission-cancelled', 'mission-completed');
-}
 
 // add sidebar items for all and native types
 $data = htmlspecialchars(http_build_query(array(
@@ -212,10 +202,6 @@ if ($search_type == 'all' || $search_type == 'entities') {
 		$current_params['type'] = $type;
 		$current_params['subtype'] = ELGG_ENTITIES_NO_VALUE;
 
-		if( $type == 'user' && $user_type ){
-			$current_params['user_type'] = $user_type;
-		}
-		
 		$results = elgg_trigger_plugin_hook('search', $type, $current_params, array());
 		if ($results === FALSE) {
 			// someone is saying not to display these types in searches.

@@ -7,18 +7,11 @@
 
 // Get variables
 $title = htmlspecialchars(get_input('title', '', false), ENT_QUOTES, 'UTF-8');
-$title2 = htmlspecialchars(get_input('title2', '', false), ENT_QUOTES, 'UTF-8');
-$title3 = gc_implode_translation($title,$title2);
 $desc = get_input("description");
-$desc2 = get_input("description2");
-$desc3 = gc_implode_translation($desc,$desc2);
 $access_id = (int) get_input("access_id");
 $container_guid = (int) get_input('container_guid', 0);
 $guid = (int) get_input('file_guid');
 $tags = get_input("tags");
-
-/// retrieve information whether this was marked as minor edit or not
-$file_edit = get_input('minor_edit');
 
 if ($container_guid == 0) {
 	$container_guid = elgg_get_logged_in_user_guid();
@@ -76,10 +69,8 @@ if ($new_file) {
 	}
 }
 
-$file->title = $title3;
-//$file->title2 = $title2;
-$file->description = $desc3;
-//$file->description2 = $desc2;
+$file->title = $title;
+$file->description = $desc;
 $file->access_id = $access_id;
 $file->container_guid = $container_guid;
 $file->tags = string_to_tag_array($tags);
@@ -113,12 +104,6 @@ if (isset($_FILES['upload']['name']) && !empty($_FILES['upload']['name'])) {
 
 	$guid = $file->save();
 
-	/// execute this line of code only if cp_notifications is active and that file is not minor edit
-	if (elgg_is_active_plugin('cp_notifications') && $file_edit != 1)
-		elgg_trigger_event('single_file_upload', $file->getType(), $file);
-	else
-		elgg_unregister_event_handler('create','object','cp_create_notification');
-	
 	$thumb = new ElggFile();
 	$thumb->owner_guid = $file->owner_guid;
 

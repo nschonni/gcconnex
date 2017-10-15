@@ -10,7 +10,7 @@ $profile_fields = elgg_get_config('profile_fields');
 
 echo '<div id="profile-details" class="elgg-body pll">';
 echo "<span class=\"hidden nickname p-nickname\">{$user->username}</span>";
-echo "<h1 class=\"p-name fn\">{$user->name}</h1>";
+echo "<h2 class=\"p-name fn\">{$user->name}</h2>";
 
 // the controller doesn't allow non-admins to view banned users' profiles
 if ($user->isBanned()) {

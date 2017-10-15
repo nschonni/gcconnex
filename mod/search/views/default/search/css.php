@@ -23,7 +23,7 @@ Search plugin
 .elgg-search input[type=text] {
 	border-radius: 10px;	
 	border: 1px solid #71b9f7;
-	color: #0088cc;
+	color: white;
 	font-size: 12px;
 	font-weight: bold;
 	padding: 2px 4px 2px 26px;

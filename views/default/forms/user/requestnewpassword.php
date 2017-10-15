@@ -4,7 +4,6 @@
  *
  * @package Elgg
  * @subpackage Core
- *
  */
 ?>
 
@@ -12,16 +11,14 @@
 	<?php echo elgg_echo('user:password:text'); ?>
 </div>
 <div>
-	<label for='username1'><?php echo elgg_echo('loginusername'); ?></label>
+	<label><?php echo elgg_echo('loginusername'); ?></label><br />
 	<?php echo elgg_view('input/text', array(
 		'name' => 'username',
 		'autofocus' => true,
-     	'id' => 'username',
 		));
 	?>
 </div>
-<br/>
 <?php echo elgg_view('input/captcha'); ?>
 <div class="elgg-foot">
 	<?php echo elgg_view('input/submit', array('value' => elgg_echo('request'))); ?>
-</div><br/>
+</div>

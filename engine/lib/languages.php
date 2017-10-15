@@ -33,7 +33,7 @@ function elgg_echo($message_key, $args = array(), $language = "") {
  * @param string $country_code   Standard country code (eg 'en', 'nl', 'es')
  * @param array  $language_array Formatted array of strings
  *
- * @return true|false Depending on success
+ * @return bool Depending on success
  */
 function add_translation($country_code, $language_array) {
 	return _elgg_services()->translator->addTranslation($country_code, $language_array);
@@ -53,7 +53,6 @@ function get_current_language() {
  *
  * @return string The language code (eg "en") or false if not set
  */
-
 function get_language() {
 	return _elgg_services()->translator->getLanguage();
 }
@@ -126,7 +125,6 @@ function _elgg_load_translations_for_language($language) {
 		}
 	}
 
-
 	return true;
 }
 
@@ -137,7 +135,7 @@ function _elgg_load_translations_for_language($language) {
  * @param bool   $load_all If true all languages are loaded, if
  *                         false only the current language + en are loaded
  *
- * @return void
+ * @return bool success
  */
 function register_translations($path, $load_all = false) {
 	return _elgg_services()->translator->registerTranslations($path, $load_all);
@@ -196,12 +194,11 @@ function _elgg_register_translations_for_language($path, $language) {
 /**
  * Reload all translations from all registered paths.
  *
- * This is only called by functions which need to know all possible translations, namely the
- * statistic gathering ones.
+ * This is only called by functions which need to know all possible translations.
  *
  * @todo Better on demand loading based on language_paths array
  *
- * @return bool
+ * @return void
  */
 function reload_all_translations() {
 	return _elgg_services()->translator->reloadAllTranslations();

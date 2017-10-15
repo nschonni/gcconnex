@@ -53,4 +53,5 @@ class ElggBlog extends ElggObject {
 			return elgg_get_excerpt($this->description, $length);
 		}
 	}
+
 }

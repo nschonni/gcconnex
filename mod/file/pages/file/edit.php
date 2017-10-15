@@ -6,7 +6,7 @@
  */
 
 elgg_load_library('elgg:file');
-$lang = get_current_language();
+
 elgg_gatekeeper();
 
 $file_guid = (int) get_input('guid');
@@ -21,10 +21,7 @@ if (!$file->canEdit()) {
 $title = elgg_echo('file:edit');
 
 elgg_push_breadcrumb(elgg_echo('file'), "file/all");
-
-elgg_push_breadcrumb(gc_explode_translation($file->title,$lang), $file->getURL());
-
-
+elgg_push_breadcrumb($file->title, $file->getURL());
 elgg_push_breadcrumb($title);
 
 elgg_set_page_owner_guid($file->getContainerGUID());

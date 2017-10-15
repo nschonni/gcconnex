@@ -4,7 +4,6 @@
 	<id>likes</id>
 	<author>Core developers</author>
 	<version>1.9</version>
-	<category>GC Custom</category>
 	<category>bundled</category>
 	<category>social</category>
 	<description>Enables users to like content on the site.</description>

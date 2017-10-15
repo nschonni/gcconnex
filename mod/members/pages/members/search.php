@@ -3,8 +3,6 @@
  * Members search page
  *
  */
-$offset = $_GET["offset"];
-$limit = 10;
 
 $query = get_input("member_query");
 

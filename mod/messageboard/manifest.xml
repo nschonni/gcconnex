@@ -4,7 +4,6 @@
 	<id>messageboard</id>
 	<author>Core developers</author>
 	<version>1.9</version>
-	<category>GC Custom</category>
 	<category>bundled</category>
 	<category>widget</category>
 	<description>Enables users to put a message board widget on their profile for other users to post comments.</description>

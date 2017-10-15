@@ -16,9 +16,7 @@ function pages_prepare_form_vars($page = null, $parent_guid = 0, $revision = nul
 	// input names => defaults
 	$values = array(
 		'title' => '',
-		'title2' => '',
 		'description' => '',
-		'description2' => '',
 		'access_id' => ACCESS_DEFAULT,
 		'write_access_id' => ACCESS_DEFAULT,
 		'tags' => '',
@@ -34,7 +32,6 @@ function pages_prepare_form_vars($page = null, $parent_guid = 0, $revision = nul
 				$values[$field] = $page->$field;
 			}
 		}
-		
 	}
 
 	if (elgg_is_sticky_form('page')) {
@@ -60,7 +57,6 @@ function pages_prepare_form_vars($page = null, $parent_guid = 0, $revision = nul
  * @param ElggObject $page Page entity
  */
 function pages_prepare_parent_breadcrumbs($page) {
-    $lang = get_current_language();
 	if ($page && $page->parent_guid) {
 		$parents = array();
 		$parent = get_entity($page->parent_guid);
@@ -70,9 +66,7 @@ function pages_prepare_parent_breadcrumbs($page) {
 		}
 		while ($parents) {
 			$parent = array_pop($parents);
-         
-                elgg_push_breadcrumb(gc_explode_translation($parent->title,$lang), $parent->getURL());
-
+			elgg_push_breadcrumb($parent->title, $parent->getURL());
 		}
 	}
 }
@@ -85,7 +79,6 @@ function pages_prepare_parent_breadcrumbs($page) {
  * @return array
  */
 function pages_get_navigation_tree($container) {
-	$lang = get_current_language();
 	if (!elgg_instanceof($container)) {
 		return;
 	}
@@ -103,14 +96,12 @@ function pages_get_navigation_tree($container) {
 	$depths = array();
 
 	foreach ($top_pages as $page) {
-
-			$tree[] = array(
+		$tree[] = array(
 			'guid' => $page->getGUID(),
-			'title' => gc_explode_translation($page->title,$lang),
+			'title' => $page->title,
 			'url' => $page->getURL(),
 			'depth' => 0,
-			);
-	
+		);
 		$depths[$page->guid] = 0;
 
 		$stack = array();
@@ -126,12 +117,9 @@ function pages_get_navigation_tree($container) {
 			));
 
 			foreach ($children as $child) {
-
-      $child_title = gc_explode_translation($child->title,$lang);
-
 				$tree[] = array(
 					'guid' => $child->getGUID(),
-					'title' => $child_title,
+					'title' => $child->title,
 					'url' => $child->getURL(),
 					'parent_guid' => $parent->getGUID(),
 					'depth' => $depths[$parent->guid] + 1,

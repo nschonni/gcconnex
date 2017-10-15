@@ -4,7 +4,7 @@
  *
  * @package ElggPages
  */
-$lang = get_current_language();
+
 $owner = elgg_get_page_owner_entity();
 if (!$owner) {
 	forward('', '404');
@@ -13,17 +13,9 @@ if (!$owner) {
 // access check for closed groups
 elgg_group_gatekeeper();
 
-/*if(!$owner->title3){
-	$title = elgg_echo('pages:owner', array($owner->title));
-    elgg_push_breadcrumb($owner->name);
-}else{
-	$title = elgg_echo('pages:owner', array(gc_explode_translation($owner->title, $lang)));
-    elgg_push_breadcrumb(gc_explode_translation($owner->title, $lang));
-}*/
+$title = elgg_echo('pages:owner', array($owner->name));
 
-
-
-elgg_push_breadcrumb(gc_explode_translation($owner->name, $lang));
+elgg_push_breadcrumb($owner->name);
 
 elgg_register_title_button();
 

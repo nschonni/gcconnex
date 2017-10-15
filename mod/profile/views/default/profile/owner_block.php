@@ -17,8 +17,6 @@ $icon = elgg_view_entity_icon($user, 'large', array(
 	'img_class' => 'photo u-photo',
 ));
 
-$icon .= '<font style="font-variant:small-caps;">Last logged in:<br/>'.(string)date("Y-m-d H:i:s",$user->last_login).'</font><br/>';
-
 // grab the actions and admin menu items from user hover
 $menu = elgg_trigger_plugin_hook('register', "menu:user_hover", array('entity' => $user), array());
 $builder = new ElggMenuBuilder($menu);

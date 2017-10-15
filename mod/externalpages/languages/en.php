@@ -7,9 +7,9 @@ return array(
 	'expages' => "Site pages",
 	'admin:appearance:expages' => "Site Pages",
 	'expages:edit:viewpage' => "View page on site",
-	'expages:about-a_propos' => "About",		// GCChange change - Ilia: Bilingual page url
-	'expages:terms' => "Terms",		// GCChange change - Ilia: Bilingual page url
-	'expages:privacy-confidentialite' => "Privacy",		// GCChange change - Ilia: Bilingual page url
+	'expages:about' => "About",
+	'expages:terms' => "Terms",
+	'expages:privacy' => "Privacy",
 	'expages:contact' => "Contact",
 
 	'expages:notset' => "This page has not been set up yet.",
